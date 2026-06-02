@@ -1,5 +1,18 @@
 __pycache__/
 .ipynb_checkpoints/
 
+
 *.pt
 .env
+*.keras
+training_padre_hijo/
+.ipynb_checkpoints/
+*.zip
+BirdScope_KEVIN_LAURA/
+
+dataset/
+dataset_original/
+cleaned_dataset/
+split_dataset/
+AVES/
+AVES_PROCESADAS_2/

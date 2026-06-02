@@ -1,8 +1,10 @@
+# 🐦 BirdScope — Intelligent Bird Dataset Pipeline
+
 <div align="center">
 
-# 🐦 BirdScope — Intelligent Bird Dataset Pipeline & Deep Learning Training
+### Bird Detection, Dataset Cleaning and Deep Learning Training Pipeline
 
-### Advanced Computer Vision Pipeline for Bird Classification using YOLOv8 + CNNs
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F2027,50:203A43,100:2C5364&height=180&section=header&text=BirdScope&fontSize=48&fontColor=ffffff"/>
 
 <br>
 
@@ -11,236 +13,132 @@
 <img src="https://img.shields.io/badge/OpenCV-ComputerVision-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white">
 <img src="https://img.shields.io/badge/PyTorch-DeepLearning-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white">
 <img src="https://img.shields.io/badge/Jupyter-Notebook-F37626?style=for-the-badge&logo=jupyter&logoColor=white">
-<img src="https://img.shields.io/badge/WSL2-Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white">
-
-<br><br>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F2027,50:203A43,100:2C5364&height=180&section=header&text=BirdScope&fontSize=50&fontColor=ffffff&animation=fadeIn"/>
 
 </div>
 
 ---
 
-# 🧠 Project Overview
+# 📌 Overview
 
-BirdScope is a complete **Computer Vision and Deep Learning pipeline** focused on automatic bird dataset preprocessing and hierarchical classification training.
+BirdScope is a preprocessing and training pipeline for bird image classification.
 
-The system integrates:
-
-- 🐦 YOLOv8 bird detection
-- ✂️ Intelligent automatic cropping
-- 🧹 Dataset cleaning and validation
-- 🧠 Parent / Child classification workflows
-- 📊 CNN training pipelines
-- 📓 Jupyter Notebook experimentation
-- ⚡ GPU acceleration support
-- 🐧 Ubuntu + WSL2 optimized environment
+The project automatically detects birds, cleans datasets, removes low-quality samples and prepares balanced datasets for Deep Learning workflows.
 
 ---
 
-# 🚀 Main Features
+# ✨ Main Features
 
-<div align="center">
+* 🐦 Automatic bird detection with YOLOv8
+* ✂️ Intelligent bird cropping
+* 🧹 Dataset cleaning
+* 🔍 Duplicate filtering using Perceptual Hash
+* 🌫 Blur detection
+* 🌑 Dark image filtering
+* ☀️ Overexposed image filtering
+* 📏 Resize pipeline (224x224)
+* ⚖️ Dataset balancing
+* 🧠 Parent → Child classification workflow
+* ⚡ CUDA support
 
-| Feature | Description |
-|---|---|
-| 🐦 YOLOv8 Detection | Automatic bird localization |
-| ✂️ Smart Cropping | Extracts best bird region |
-| 🧹 Dataset Cleaning | Removes noisy samples |
-| 🔍 Duplicate Filtering | Perceptual image hashing |
-| 🌑 Brightness Validation | Removes dark/overexposed images |
-| 🌫 Blur Detection | Filters blurry samples |
-| 📂 Dataset Split | Automatic Train/Validation split |
-| 📏 Resize Pipeline | Standardized 224x224 images |
-| 🧠 CNN Ready | Training-ready structure |
-| ⚡ CUDA Support | GPU acceleration |
+---
 
-</div>
+# 🔄 Pipeline
+
+```mermaid
+graph TD;
+
+A[Raw Images] --> B[YOLOv8 Detection]
+B --> C[Crop Bird]
+C --> D[Quality Validation]
+D --> E[Duplicate Removal]
+E --> F[Dataset Cleaning]
+F --> G[Training Dataset]
+G --> H[Deep Learning Model]
+```
 
 ---
 
 # 📂 Repository Structure
 
-```bash
-BirdScope_KEVIN_LAURA/
-│
-├── BirdScope_KEVIN_LAURA/
-│   ├── dataset/
-│   ├── cleaned_dataset/
-│   ├── split_dataset/
-│
-├── Taller_Clínica_de_Modelos-TRAINING-HIJO-LAURA_KEVIN/
+```text
+Proyecto_Aves/
 │
 ├── 1_detectar_recortar.py
 ├── Modelo_Entrenamiento_Padre_Hijo_Aves.ipynb
 ├── README.md
 ├── requirements.txt
-└── .git/
+│
+├── dataset_original/     (not included)
+├── cleaned_dataset/      (generated automatically)
+├── training_padre_hijo/  (not included)
 ```
 
 ---
 
-# 🔄 Full AI Pipeline
+# ⚠️ Dataset
 
-```mermaid
-graph TD;
+The dataset is NOT included in this repository due to storage limitations.
 
-A[Raw Bird Images] --> B[YOLOv8 Detection]
-B --> C[Automatic Crop]
-C --> D[Quality Validation]
-D --> E[Duplicate Removal]
-E --> F[Dataset Cleaning]
-F --> G[Train Validation Split]
-G --> H[CNN Training]
-H --> I[Metrics Evaluation]
-I --> J[Prediction System]
-```
-
----
-
-# 💻 Recommended Environment
-
-<div align="center">
-
-## 🐧 Ubuntu + WSL2 + Jupyter Notebook
-
-</div>
-
-For optimal performance in Deep Learning tasks, this project was designed to run using:
-
-- Ubuntu 22.04 LTS
-- WSL2
-- Python 3.10+
-- CUDA GPU acceleration
-- Jupyter Notebook / JupyterLab
-
----
-
-# ⚙️ Ubuntu + WSL2 Installation Guide
-
----
-
-## 1️⃣ Open PowerShell as Administrator
-
-Press:
-
-```bash
-Win + X
-```
-
-Then select:
+Expected structure:
 
 ```text
-Windows PowerShell (Admin)
+dataset_original/
+├── species_1/
+├── species_2/
+├── species_3/
 ```
+
+Add your images inside each species folder before executing the pipeline.
 
 ---
 
-## 2️⃣ Install WSL2 + Ubuntu
+# 🧹 Cleaning Strategy
 
-Run:
+The system evaluates all images before selecting the best samples.
+
+Applied validations:
+
+| Validation           | Purpose                    |
+| -------------------- | -------------------------- |
+| Blur Detection       | Remove blurry images       |
+| Dark Detection       | Remove underexposed images |
+| Bright Detection     | Remove overexposed images  |
+| Duplicate Removal    | Perceptual Hash filtering  |
+| Bird Size Validation | Remove tiny detections     |
+| Quality Ranking      | Preserve best samples      |
+
+---
+
+# ⚙️ Installation
+
+Clone repository:
 
 ```bash
-wsl --install
+git clone https://github.com/Asnarck7/Proyecto_Aves.git
+cd Proyecto_Aves
 ```
 
-This automatically installs:
-
-✅ WSL2  
-✅ Ubuntu Linux  
-✅ Virtualization tools  
-✅ Linux kernel components  
-
----
-
-## 3️⃣ Restart Windows
-
-After installation completes, restart your computer.
-
----
-
-## 4️⃣ Launch Ubuntu
-
-Search for:
-
-```text
-Ubuntu
-```
-
-from the Windows Start Menu.
-
-The first startup may take several minutes.
-
----
-
-## 5️⃣ Create Linux User
-
-Ubuntu will request:
+Create environment:
 
 ```bash
-Username
-Password
+python -m venv venv
 ```
 
-Example:
+Activate:
+
+Windows:
 
 ```bash
-Username: kevin
-Password: ********
+venv\Scripts\activate
 ```
 
----
-
-# 📦 Update Ubuntu Packages
-
-Inside Ubuntu terminal run:
+Linux:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+source venv/bin/activate
 ```
 
----
-
-# 🐍 Install Python & Pip
-
-```bash
-sudo apt install python3 python3-pip -y
-```
-
-Verify installation:
-
-```bash
-python3 --version
-pip3 --version
-```
-
----
-
-# 📓 Install Jupyter Notebook
-
-```bash
-pip install notebook jupyterlab
-```
-
----
-
-# 📥 Clone Repository
-
-```bash
-git clone https://github.com/YOUR_USERNAME/BirdScope_KEVIN_LAURA.git
-```
-
----
-
-# 📂 Navigate to Project
-
-```bash
-cd /mnt/c/Users/kevin/OneDrive/Escritorio/Electiva\ III/yolo_bird_dataset_limpiador___y___Entrenamiento_Padre_Hijo
-```
-
----
-
-# 📦 Install Dependencies
+Install requirements:
 
 ```bash
 pip install -r requirements.txt
@@ -248,180 +146,30 @@ pip install -r requirements.txt
 
 ---
 
-# ▶️ Launch Jupyter Notebook
+# ▶️ Run Pipeline
 
 ```bash
-jupyter notebook
-```
-
-or:
-
-```bash
-jupyter lab
+python 1_detectar_recortar.py
 ```
 
 ---
 
-# 🌐 Open Browser
+# 🧠 Technologies
 
-Jupyter will generate a local URL:
-
-```bash
-http://localhost:8888
-```
-
-Open it in your browser.
-
----
-
-# 🧪 Training Notebook
-
-<div align="center">
-
-## 📓 Modelo_Entrenamiento_Padre_Hijo_Aves.ipynb
-
-</div>
-
-The notebook includes:
-
-✅ Dataset preprocessing  
-✅ Augmentation pipeline  
-✅ CNN training  
-✅ Parent/Child classification  
-✅ Evaluation metrics  
-✅ Accuracy & Loss graphs  
-✅ Prediction analysis  
-✅ Visualization tools  
-
----
-
-# 🧹 Automatic Dataset Cleaning
-
-The preprocessing pipeline automatically removes:
-
-<div align="center">
-
-| Validation | Description |
-|---|---|
-| 🌑 Dark Images | Removes underexposed samples |
-| ☀️ Bright Images | Removes overexposed samples |
-| 🌫 Blur Images | Removes blurry crops |
-| 🔍 Tiny Detections | Filters small birds |
-| ♻️ Duplicates | Removes repeated images |
-
-</div>
-
----
-
-# 📂 Automatic Dataset Split
-
-The repository also includes automatic dataset organization.
-
-Generated structure:
-
-```bash
-dataset_split/
-├── train/
-│   ├── species_1/
-│   ├── species_2/
-│
-├── val/
-│   ├── species_1/
-│   ├── species_2/
-```
-
-Split ratio:
-
-```text
-80% → Train
-20% → Validation
-```
-
----
-
-# ⚡ GPU Acceleration
-
-BirdScope automatically detects:
-
-- CUDA GPU
-- NVIDIA acceleration
-- CPU fallback mode
-
----
-
-# 📊 Training Workflow
-
-```mermaid
-graph LR;
-
-A[Dataset] --> B[Preprocessing]
-B --> C[Augmentation]
-C --> D[CNN Training]
-D --> E[Validation]
-E --> F[Metrics]
-F --> G[Predictions]
-```
-
----
-
-# 🧠 Technologies Used
-
-<div align="center">
-
-| Technology | Purpose |
-|---|---|
-| Python | Main Language |
-| YOLOv8 | Bird Detection |
-| OpenCV | Image Processing |
-| PyTorch | Deep Learning |
-| NumPy | Numerical Operations |
-| Pillow | Image Utilities |
-| ImageHash | Duplicate Filtering |
-| Jupyter | Experimentation |
-| Ubuntu WSL2 | AI Environment |
-
-</div>
-
----
-
-# 🔥 Recommended Hardware
-
-| Component | Recommendation |
-|---|---|
-| RAM | 16 GB+ |
-| GPU | NVIDIA CUDA |
-| Storage | SSD |
-| OS | Ubuntu 22.04 |
-| Python | 3.10+ |
-
----
-
-# 📈 Project Goals
-
-- Improve bird classification datasets
-- Automate preprocessing workflows
-- Reduce manual annotation effort
-- Create reproducible AI pipelines
-- Enable scalable CNN experimentation
+* Python
+* YOLOv8
+* OpenCV
+* PyTorch
+* NumPy
+* Pillow
+* ImageHash
+* Jupyter Notebook
 
 ---
 
 # 👨‍💻 Authors
 
-<div align="center">
+Kevin Julian Guerrero Penagos
+Laura
 
-## Kevin & Laura
-
-Computer Vision • Deep Learning • AI Research
-
-</div>
-
----
-
-<div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:2C5364,50:203A43,100:0F2027&height=120&section=footer"/>
-
-# 🚀 Built for Artificial Intelligence Research
-
-</div>
+Computer Vision • Deep Learning • Artificial Intelligence
